@@ -24,7 +24,7 @@ jobs:
         run: python coletor.py
 
       - name: Salva os dados coletados
-        uses: actions/upload-artifact@v3
+        uses: upload-artifact@v4
         with:
           name: dados-coletados
           path: dados/
