@@ -2,29 +2,29 @@ name: Coleta Semanal de Dados
 
 on:
   schedule:
-    - cron: "0 8 * * 1"  # toda segunda-feira às 8h
-  workflow_dispatch:       # permite rodar manualmente
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
 
 jobs:
   coletar:
     runs-on: ubuntu-latest
     steps:
-      - name: Baixa o repositório
-        uses: actions/checkout@v3
+      - name: Baixa o repositorio
+        uses: actions/checkout@v4
 
       - name: Configura Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Instala dependências
+      - name: Instala dependencias
         run: pip install requests pandas
 
       - name: Roda o coletor
         run: python coletor.py
 
       - name: Salva os dados coletados
-        uses: upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: dados-coletados
           path: dados/
